@@ -1,7 +1,8 @@
 from enum import Enum,auto
 from pathlib import Path
-print(Path(__file__).parent.parent)
 class keydef(Enum):
+    """ Path definition
+    """
     PATH_INPUT = str(Path(__file__).parent.parent)+'\data\input\*.csv'
     PATH_OUTPUT = str(Path(__file__).parent.parent)+'\data\output\\'
     SETTINGS = str(Path(__file__).parent.parent)+'\settings.json'

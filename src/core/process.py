@@ -1,10 +1,10 @@
-from dataclasses import dataclass,field
+from dataclasses import dataclass
 from abc import ABC,abstractmethod
-from enum import Enum,auto
-from typing import Any,Dict,List
 
 @dataclass
 class pipeline(ABC):
+    """Abstract class to define process executon with Spark and Pandas
+    """
     @abstractmethod
     def find_files(self) -> None:
         """

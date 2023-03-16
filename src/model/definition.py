@@ -14,4 +14,10 @@ class normalize(Enum):
                     'data':{'inf':'0.0'}}
     USA_WISE = {'name':'usa_county_wise.csv',
                     'column':'Date'}
+class sparkset(Enum):
+    NAME = 'Carga Coronavirus'
+    SERVER = 'local[4]'
+    MEMORY = {'param':'spark.executor.memory','value':'8g'}
+    READER = {'param':'spark.sql.execution.arrow.pyspark.enabled','value':'true'}
+    LOG = 'OFF'
     

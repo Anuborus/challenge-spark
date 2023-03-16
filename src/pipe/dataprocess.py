@@ -1,4 +1,4 @@
-from src.pipe import pipeline,keydef,normalize,filtercolumn
+from src.pipe import pipeline,keydef,normalize,filtercolumn,sparkset
 from dataclasses import dataclass,field
 from typing import List
 import json
@@ -59,12 +59,12 @@ class Sparkpipe(pipeline):
     def get_cluster(self) -> None:
         # Se realiza configuración de la sesión de Spark a utilizar
         self.spark = SparkSession.builder \
-                    .appName("Carga Coronavirus") \
-                    .master("local[4]") \
-                    .config("spark.executor.memory", "8g") \
-                    .config("spark.sql.execution.arrow.pyspark.enabled", "true") \
+                    .appName(sparkset.NAME.value) \
+                    .master(sparkset.SERVER.value) \
+                    .config(sparkset.MEMORY.value['param'], sparkset.MEMORY.value['value']) \
+                    .config(sparkset.READER.value['param'], sparkset.READER.value['value']) \
                     .getOrCreate()
-        self.spark.sparkContext.setLogLevel("OFF")
+        self.spark.sparkContext.setLogLevel(sparkset.LOG.value)
     def find_files(self) -> None:
         self.files = glob(keydef.PATH_INPUT.value) # Identifica los archios .csv en la carpeta
     def load_base(self) -> None:
